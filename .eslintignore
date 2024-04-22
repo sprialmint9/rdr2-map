@@ -1,0 +1,7 @@
+node_modules/*
+build/*
+config/*
+dist/*
+lib/*
+static/*
+index.7ea3d773.js
