@@ -28,7 +28,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       injectRegister: 'auto',
       manifest: {
-        name: '荒野大镖客：救赎2全收集地图',
+        name: 'RDR2 Map',
         short_name: 'RDR2 Map',
         description: '荒野大镖客：救赎2全收集地图',
         start_url: '.',
@@ -127,6 +127,7 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,png,jpg,jpeg,svg,woff2,json,ts,tsx,jsx,txt}'],
+        cleanupOutdatedCaches: false,
         runtimeCaching: [
           {
             urlPattern: /^\.js/,
@@ -158,11 +159,11 @@ export default defineConfig({
           },
           {
             urlPattern: /^https:\/\/mcdn.gtimg.com\/.*/i,
-            handler: 'CacheFirst',
+            handler: 'CacheOnly',
             options: {
               cacheName: 'mcdn-img-cache',
               expiration: {
-                maxEntries: 10,
+                maxEntries: 4180,
                 maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
               },
               cacheableResponse: {
@@ -171,12 +172,12 @@ export default defineConfig({
             },
           },
           {
-            urlPattern: /^\.[png|jpg|jpeg|svg|woff2|json|txt]/,
-            handler: 'CacheFirst',
+            urlPattern: /^\.[svg|woff2|json|txt]/,
+            handler: 'CacheOnly',
             options: {
               cacheName: 'site-assets',
               expiration: {
-                maxEntries: 10,
+                maxEntries: 4180,
                 maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
               },
               cacheableResponse: {

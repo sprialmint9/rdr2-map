@@ -535,7 +535,6 @@
     });
     var i = navigator.userAgent;
     (e.isMobile = document.body.clientWidth < 768),
-      (e.isGouhuoApp = /wgxapp/.test(i)),
       (e.isIPad = /iPad/i.test(i));
   },
   function (t, e) {},
@@ -10379,8 +10378,7 @@
             (0, i.default)('[data-topic-id]')
               .off()
               .on('click', function () {
-                var t = navigator.userAgent.match(/wgxapp\/([\d.]+)/),
-                  e = (0, i.default)(this).data('topic-id');
+                 var e = (0, i.default)(this).data('topic-id');
                 window.location.href = 'https://gouhuo.qq.com/game/topic/detail.html?id=' + e;
               });
         });
