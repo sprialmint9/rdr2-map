@@ -167,13 +167,13 @@ export default defineConfig({
                 maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
               },
               cacheableResponse: {
-                statuses: [0, 200],
+                statuses: [0, 200, 304],
               },
             },
           },
           {
             urlPattern: /^\.[svg|woff2|json|txt]/,
-            handler: 'CacheOnly',
+            handler: 'CacheFirst',
             options: {
               cacheName: 'site-assets',
               expiration: {
@@ -181,7 +181,7 @@ export default defineConfig({
                 maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
               },
               cacheableResponse: {
-                statuses: [0, 200],
+                statuses: [0, 200, 304],
               },
             },
           },
