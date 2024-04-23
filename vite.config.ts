@@ -12,21 +12,15 @@ export default defineConfig({
   assetsInclude: ['./src/assets/**'],
   server: {
     host: '0.0.0.0',
-  },
-  preview: {
     https: {
       cert: fs.readFileSync(path.join(__dirname, 'keys/myapp.dev+4.pem')),
       key: fs.readFileSync(path.join(__dirname, 'keys/myapp.dev+4-key.pem')),
     },
   },
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          react: ['react', 'react-dom', 'react-router-dom'],
-          base: ['idb', 'immer', 'zustand'],
-        },
-      },
+  preview: {
+    https: {
+      cert: fs.readFileSync(path.join(__dirname, 'keys/myapp.dev+4.pem')),
+      key: fs.readFileSync(path.join(__dirname, 'keys/myapp.dev+4-key.pem')),
     },
   },
   plugins: [
@@ -153,6 +147,20 @@ export default defineConfig({
             handler: 'CacheFirst',
             options: {
               cacheName: 'site-css',
+              expiration: {
+                maxEntries: 10,
+                maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+          {
+            urlPattern: /^https:\/\/mcdn.gtimg.com\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'mcdn-img-cache',
               expiration: {
                 maxEntries: 10,
                 maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
