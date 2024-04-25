@@ -2853,9 +2853,26 @@
                         h.icon.popup +
                         '" alt="" class="leaflet-popup-icon"></a>\n      </div>'),
                       (n += '</div><div class="leaflet-popup-bd">'),
+                      e.video_id
+                        ? (n +=
+                            '<div class="leaflet-popup-imgWrap">\n      <video poster="' +
+                            e.image_url +
+                            '" class="video-js" width="150px" height="120px"  controls  x5-video-player-fullscreen="true" x5-video-player-type="h5">\n        <source src="https://mwegame.qq.com/wegame/video/geturl?vid=' +
+                            e.video_id +
+                            '" type="video/mp4">\n      </video>\n      </div>')
+                        : e.image_url &&
+                          (n +=
+                            '<div class="leaflet-popup-imgWrap">\n      <img src="' +
+                            e.image_url +
+                            '" alt="" class="leaflet-popup-img">\n      </div>'),
                       (n += '<div class="leaflet-popup-txt">' + e.popup[i] + '</div>\n    </div>'),
                       (n +=
                         '<div class="leaflet-popup-ft">\n      <a href="javascript:void(0)" data-action="mark" class="leaflet-popup-btn-sign"><i class="leaflet-popup-icon-sign"></i><span class="leaflet-popup-sign-txt">标记</span></a>'),
+                      e.topic_id &&
+                        (n +=
+                          '<a href="javascript:void(0)" data-topic-id="' +
+                          e.topic_id +
+                          '" class="leaflet-popup-link-detail">\n        <span class="leaflet-popup-sign-txt">攻略</span>\n        <i class="leaflet-popup-icon-arrowR"></i>\n      </a>'),
                       (n += ' </div></div>');
                     var c = t
                       .marker(e.latlng, {

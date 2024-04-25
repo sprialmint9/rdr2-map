@@ -35,8 +35,8 @@ export default defineConfig({
         display: 'standalone',
         display_override: ['fullscreen', 'minimal-ui'],
         orientation: 'portrait-primary',
-        theme_color: 'auto',
-        background_color: '#f2f2f2',
+        theme_color: '#333',
+        background_color: '#333',
         icons: [
           {
             src: '/icons/57.png',
@@ -172,7 +172,7 @@ export default defineConfig({
             },
           },
           {
-            urlPattern: /^\.[svg|woff2|json|txt]/,
+            urlPattern: /^\.[png|svg|woff2|json|txt]/,
             handler: 'CacheFirst',
             options: {
               cacheName: 'site-assets',
